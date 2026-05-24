@@ -1,0 +1,194 @@
+
+-------------------------------------------------
+
+
+--------------------------------------------------
+get all wallets 
+GET
+http://127.0.0.1:8000/api/wallets/
+{
+  "success": true,
+  "data": [
+    {
+      "wallet_id": "7b5ba0fb-b7c9-40cb-806f-5c8bc7faeac1",
+      "balance": "0.52",
+      "user_id": "5a1958c0-4ce8-40aa-939a-6df6ecfb65d0"
+    },
+    {
+      "wallet_id": "d3b92529-ea33-451f-af17-2a369105e157",
+      "balance": "0.00",
+      "user_id": "5a1958c0-4ce8-40aa-939a-6df6ecfb65d0"
+    }
+  ]
+}
+--------------------------------------------------
+create wallet 
+POST
+http://127.0.0.1:8000/api/wallet/
+{
+  "symbol_name" : "BTC" , 
+  "user_id" : "c647929a-8ba3-4ace-a7a4-1c4927df5c28"
+}
+{
+  "success": true,
+  "message": "Wallet created",
+  "data": {
+    "walletId": "22f48518-8c99-4524-8a45-76b8ec8eae8a"
+  }
+}
+-------------------------------------------------
+deposit to wallet
+POST 
+http://127.0.0.1:8000/api/wallet/deposit/
+{
+  "wallet_id" : "22f48518-8c99-4524-8a45-76b8ec8eae8a" , 
+  "user_id" : "c647929a-8ba3-4ace-a7a4-1c4927df5c28",
+  "amount": "50" , 
+  "refrence_key" : "gcfghcfj2"
+}
+{
+  "success": true,
+  "data": {
+    "walletId": "22f48518-8c99-4524-8a45-76b8ec8eae8a",
+    "balance": 50.0,
+    "transactionId": "1079caae-f2fc-484b-897d-6c05b414ea02"
+  }
+}
+-----------------------------------------
+withdraw to wallet
+POST 
+http://127.0.0.1:8000/api/wallet/withdraw/
+{
+  "wallet_id" : "22f48518-8c99-4524-8a45-76b8ec8eae8a" , 
+  "user_id" : "c647929a-8ba3-4ace-a7a4-1c4927df5c28",
+  "amount": "50" , 
+  "refrence_key" : "gcfghcfj2"
+}
+{
+  "success": true,
+  "data": {
+    "walletId": "22f48518-8c99-4524-8a45-76b8ec8eae8a",
+    "balance": 0.0,
+    "transactionId": "44195aa7-fc91-43a3-be70-fa989516d65f"
+  }
+}
+-----------------------------------------------------
+get transactoin history
+GET
+http://127.0.0.1:8000/api/transactions/
+http://127.0.0.1:8000/api/transactions/?wallet_id=7b5ba0fb-b7c9-40cb-806f-5c8bc7faeac1
+http://127.0.0.1:8000/api/transactions/?user_id=c647929a-8ba3-4ace-a7a4-1c4927df5c28
+{
+  "success": true,
+  "data": [
+    {
+      "transactionId": "193bebcf-8bf8-4cdd-b482-1f3bc03f5920",
+      "walletId": "22f48518-8c99-4524-8a45-76b8ec8eae8a",
+      "userId": "c647929a-8ba3-4ace-a7a4-1c4927df5c28",
+      "amount": "50.00",
+      "transactionType": "WITHDRAW",
+      "created_at": "2026-05-23T08:39:37.800047Z"
+    },
+    {
+      "transactionId": "98909b38-36ef-4e08-9320-835a22b7052b",
+      "walletId": "22f48518-8c99-4524-8a45-76b8ec8eae8a",
+      "userId": "c647929a-8ba3-4ace-a7a4-1c4927df5c28",
+      "amount": "50.00",
+      "transactionType": "DEPOSIT",
+      "created_at": "2026-05-23T08:35:56.456633Z"
+    },
+    {
+      "transactionId": "44195aa7-fc91-43a3-be70-fa989516d65f",
+      "walletId": "22f48518-8c99-4524-8a45-76b8ec8eae8a",
+      "userId": "c647929a-8ba3-4ace-a7a4-1c4927df5c28",
+      "amount": "50.00",
+      "transactionType": "WITHDRAW",
+      "created_at": "2026-05-23T08:28:59.033581Z"
+    },
+    {
+      "transactionId": "1079caae-f2fc-484b-897d-6c05b414ea02",
+      "walletId": "22f48518-8c99-4524-8a45-76b8ec8eae8a",
+      "userId": "c647929a-8ba3-4ace-a7a4-1c4927df5c28",
+      "amount": "50.00",
+      "transactionType": "DEPOSIT",
+      "created_at": "2026-05-23T08:24:02.809432Z"
+    }
+  ]
+}
+-----------------------------------------
+get wallet balance
+GET
+http://localhost:8000/api/wallet/balance/?wallet_id=22f48518-8c99-4524-8a45-76b8ec8eae8a&user_id=c647929a-8ba3-4ace-a7a4-1c4927df5c28
+
+{
+  "success": true,
+  "data": {
+    "balance": 0.0
+  }
+}
+
+------------------------------------------user and symbol 
+create user 
+POST
+http://localhost:8000/api/user/
+{
+  "name" : "Bita"
+}
+{
+  "success": true,
+  "data": {
+    "user_id": "68164ba2-9f2d-4a1a-b4e0-4100bf9342d5",
+    "name": "Bita"
+  }
+}
+-------------------------------------------------
+get all users 
+GET 
+http://localhost:8000/api/users/
+{
+  "success": true,
+  "data": [
+    {
+      "user_id": "5a1958c0-4ce8-40aa-939a-6df6ecfb65d0",
+      "name": "user1"
+    },
+    {
+      "user_id": "87283bfa-5ebf-49a1-9140-99daaa74ce55",
+      "name": "user2"
+    },
+    {
+      "user_id": "c647929a-8ba3-4ace-a7a4-1c4927df5c28",
+      "name": "user3"
+    },
+    {
+      "user_id": "68164ba2-9f2d-4a1a-b4e0-4100bf9342d5",
+      "name": "Bita"
+    }
+  ]
+}
+-------------------------------------------------
+create symbol 
+POST 
+http://127.0.0.1:8000/api/symbol/
+{
+  "name" : "BTC"
+}
+-------------------------------------------------
+get all symbols
+GET
+http://127.0.0.1:8000/api/symbols/
+{
+  "success": true,
+  "data": [
+    {
+      "symbol_id": "9c91dfff-d009-4816-a680-49916b32b701",
+      "name": "BTC"
+    },
+    {
+      "symbol_id": "a98a9ef6-3e46-432f-9973-d20ebeab816b",
+      "name": "USDT"
+    }
+  ]
+}
+-------------------------------------------------
+
