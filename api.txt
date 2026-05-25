@@ -1,7 +1,38 @@
 
--------------------------------------------------
+----------------------Final test-------------------
+http://localhost:8000/api/user/
+{
+  "name" : "Bita"
+}
+{
+  "success": true,
+  "data": {
+    "user_id": "23212e96-e6d3-4a03-8b7a-47f2e5fde0ac",
+    "name": "Bita"
+  }
+}
+http://localhost:8000/api/symbol/
+{
+  "name" : "USDT"
+}
+{
+  "success": true,
+  "message": "Symbol created",
+  "symbolId": "2c736d26-43e8-49d9-848c-80b78373f446"
+}
+http://localhost:8000/api/wallet/
 
-
+{
+  "symbol_name" : "USDT" , 
+  "user_id" : "23212e96-e6d3-4a03-8b7a-47f2e5fde0ac"
+}
+{
+  "success": true,
+  "message": "Wallet created",
+  "data": {
+    "walletId": "6a5a68a6-1e08-49cf-8179-766b883ed582"
+  }
+}
 --------------------------------------------------
 get all wallets 
 GET
