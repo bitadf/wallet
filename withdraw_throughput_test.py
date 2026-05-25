@@ -23,7 +23,7 @@ MAX_WORKERS = 20
 
 def main():
     print(f"Using database: {connection.settings_dict['NAME']}")
-    print(f"Running {TOTAL_REQUESTS} deposit requests with {MAX_WORKERS} workers...\n")
+    print(f"Running {TOTAL_REQUESTS} withdraw requests with {MAX_WORKERS} workers...\n")
 
     try:
         wallet = Wallet.objects.get(wallet_id=WALLET_ID)
